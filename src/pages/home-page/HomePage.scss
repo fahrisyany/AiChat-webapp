@@ -1,0 +1,58 @@
+@import "../../styles/variables.scss";
+
+.home-page {
+    width: 100%;
+    .hero {
+        margin-bottom: 120px;
+        .hero-txt {
+            font-size: 64px;
+            width: 600px;
+        }
+        .cta-button {
+            color: $fore-color;
+            border: solid $fore-color 1px;
+            border-radius: 12px;
+            height: 40px;
+            margin-left: 24px;
+            background-color: transparent;
+            &:active,
+            &:focus {
+                color: $fore-color;
+                outline: 0 none;
+                background-color: transparent;
+                border-color: $fore-color;
+                box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px $fore-color !important;
+            }
+        }
+        img {
+            width: 320px; /* you can use % */
+            height: auto;
+        }
+
+        .hero-subtxt {
+            margin: 10px 0px 32px;
+            width: 500px;
+        }
+        .search-bar {
+            width: 250px;
+            max-width: 400px;
+            .form-control {
+                border: 1px solid $accent-color;
+                border-radius: 12px;
+                background-color: transparent;
+                width: 100px;
+                &:active,
+                &:focus {
+                    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px $accent-color !important;
+                }
+            }
+        }
+    }
+
+    .card-ctnr {
+        .card {
+            margin-right: 32px;
+            margin-bottom: 32px;
+        }
+    }
+}

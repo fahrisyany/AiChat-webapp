@@ -1,0 +1,32 @@
+@import "../../styles/variables.scss";
+
+.card {
+    cursor: pointer;
+    width: 12rem;
+    background-color: transparent;
+    border-radius: 12px;
+    .card-img-top {
+        border-radius: 12px 12px 0 0;
+    }
+    .card-title {
+        font-size: 16px;
+        margin: 6px 0;
+    }
+    .card-text {
+        font-size: 12px;
+        margin: 0;
+    }
+    .card-body {
+        position: relative;
+        background-color: lighten($bg-color, 10%);
+        border-radius: 0 0 12px 12px;
+        padding: 1rem;
+    }
+
+    .fav-btn {
+        position: absolute;
+        top: 0.3rem;
+        right: 0.2rem;
+
+    }
+}

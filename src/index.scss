@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap");
+@import "./styles/variables.scss";
+
+html {
+  padding: 0;
+  margin: 0;
+
+
+  body {
+    padding: 0;
+    margin: 0;
+
+    font-family: 'Sen';
+    background-color: $bg-color;
+
+  }
+}

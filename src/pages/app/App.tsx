@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.scss';
-import Data from '../../components/data-comp/data.comp'
+import HomePage from '../home-page/HomePage'
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <Data />
+    <div className="App d-flex flex-column ">
+      <HomePage/>
     </div>
   );
 }
