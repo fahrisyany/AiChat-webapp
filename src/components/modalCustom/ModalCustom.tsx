@@ -5,18 +5,19 @@ import { UIInterface } from '../../interfaces/user-interface.interface';
 import { toggleModal } from '../../redux/actions/user-interface';
 import { RootState } from '../../redux/reducers';
 import "./ModalCustom.scss"
-import Button from 'react-bootstrap/Button';
 import { MovieState } from '../../interfaces/movie/movie-state.interface';
 import Spinner from 'react-bootstrap/Spinner'
 import ListGroup from 'react-bootstrap/ListGroup'
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
 interface ModalCustomProps {
 
 }
 
-const ModalCustom: React.FC<ModalCustomProps> = ({ }) => {
+const ModalCustom: React.FC<ModalCustomProps> = () => {
     const dispatch = useDispatch();
     const { modal: { status } }: UIInterface = useSelector((state: RootState) => state.UIReducer) || '';
-    const { movieDetail, loading }: MovieState = useSelector((state: RootState) => state.movieReducer) || '';
+    const { movieDetail, loading, movieCredits }: MovieState = useSelector((state: RootState) => state.movieReducer) || '';
 
     const handleModal = () => {
         dispatch(toggleModal(!status))
@@ -38,20 +39,16 @@ const ModalCustom: React.FC<ModalCustomProps> = ({ }) => {
                         <h1 className='movie-title'>
                             {movieDetail?.title}
                         </h1>
-                        <Button className='cta-button'><b>Add to Favorites</b></Button>
                         <p className='movie-synopsis'>
                             {movieDetail?.overview ? movieDetail?.overview : 'No overview found'}
                         </p>
                         <ListGroup variant="flush">
                             <ListGroup.Item className='d-flex flex-row justify-content-between'>
                                 <span>Released</span>
-                                <span>
-                                    {movieDetail?.release_date}
-                                </span>
+                                <span>{movieDetail?.release_date}</span>
                             </ListGroup.Item>
                             <ListGroup.Item className='d-flex flex-row justify-content-between'>
                                 <span>Langguage</span>
-
                                 <div>
                                     {movieDetail?.spoken_languages?.map((lang, i) =>
                                         <span>
@@ -59,9 +56,34 @@ const ModalCustom: React.FC<ModalCustomProps> = ({ }) => {
                                         </span>
                                     )}
                                 </div>
-
                             </ListGroup.Item>
-
+                           
+                            <Tabs defaultActiveKey="crew" >
+                                <Tab eventKey="crew" title="Crew">
+                                    <div className='tab-detail'>
+                                        {
+                                            movieCredits?.crew?.map((crew) =>
+                                                <ListGroup.Item className='d-flex flex-row justify-content-between'>
+                                                    <span>{crew.job}</span>
+                                                    <span>{crew.name}</span>
+                                                </ListGroup.Item>
+                                            )
+                                        }
+                                    </div>
+                                </Tab>
+                                <Tab eventKey="cast" title="Cast">
+                                    <div className='tab-detail'>
+                                        {
+                                            movieCredits?.cast?.map((cast) =>
+                                                <ListGroup.Item className='d-flex flex-row justify-content-between'>
+                                                    <span>{cast.character}</span>
+                                                    <span>{cast.name}</span>
+                                                </ListGroup.Item>
+                                            )
+                                        }
+                                    </div>
+                                </Tab>
+                            </Tabs>
                         </ListGroup>
                         {/* {JSON.stringify(movieCredits)} */}
                     </div>
