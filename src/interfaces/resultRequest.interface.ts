@@ -1,4 +1,4 @@
-import {MovieInterface} from './movie.interface'
+import {MovieInterface} from './movie/movie.interface'
 export interface ResultRequestInterface {
     page: number;
     total_results: number;

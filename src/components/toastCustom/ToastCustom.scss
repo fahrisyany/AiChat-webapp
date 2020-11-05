@@ -1,0 +1,12 @@
+.toast-cntr {
+    position: fixed;
+    top: 100px;
+    right: 100px;
+    color: black;
+    z-index: 99;
+    width: 400px;
+
+    .toast-body {
+        background-color: #fff;
+    }
+}

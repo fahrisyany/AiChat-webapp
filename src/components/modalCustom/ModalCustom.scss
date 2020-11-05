@@ -1,0 +1,66 @@
+@import "../../styles/variables.scss";
+
+.modal-content {
+    min-height: 800px;
+    height: 100%;
+    border-radius: 24px;
+    background-color: lighten($bg-color, 5%);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+
+    .spinner-cntr {
+        margin: auto;
+    }
+    .modal-body {
+        color: $txt-color;
+        margin: 20px;
+        height: 100%;
+        .movie-poster {
+            // border: solid red;
+            img {
+                width: 320px;
+                height: auto;
+                box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.6);
+            }
+        }
+
+        .movie-info {
+            // border: solid green;
+            width: 100%;
+            margin-left: 80px;
+
+            .movie-synopsis {
+                margin-top: 40px;
+                padding-top: 24px;
+                border-top: solid 2px lighten(#000, 70%);
+            }
+
+            .list-group {
+                margin-top: 48px;
+                .list-group-item {
+                    font-size: 14px;
+                    background-color: transparent;
+                    padding: 0.75rem 0;
+                    border-color: lighten(#000, 70%);
+                    width: 50%;
+                    border-style: dotted;
+                }
+            }
+        }
+    }
+
+    .cta-button {
+        color: $fore-color;
+        border: solid $fore-color 1px;
+        border-radius: 4px;
+        height: 40px;
+        margin-top: 8px;
+        background-color: transparent;
+        &:active,
+        &:focus {
+            color: $fore-color;
+            outline: 0 none;
+            background-color: transparent;
+            border-color: $fore-color;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+@import "../../styles/variables.scss";
+
+.favorite-page {
+    h1 {
+        color: $fore-color;
+    }
+
+    .card-ctnr {
+        margin-top: 140px;
+        .card {
+            margin-right: 32px;
+            margin-bottom: 32px;
+        }
+    }
+}

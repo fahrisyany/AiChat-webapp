@@ -1,11 +1,25 @@
 import React from 'react';
 import './App.scss';
 import HomePage from '../home-page/HomePage'
+import FavoritePage from '../favorite-page/FavoritePage'
+import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
+import ToastCustom from '../../components/toastCustom/ToastCustom'
+import ModalCustom from '../../components/modalCustom/ModalCustom'
+import 'animate.css'
+
 const App: React.FC = () => {
+
   return (
-    <div className="App d-flex flex-column ">
-      <HomePage/>
-    </div>
+    <Router>
+      <div className="App">
+        <ToastCustom />
+        <ModalCustom />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/favorites" component={FavoritePage} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

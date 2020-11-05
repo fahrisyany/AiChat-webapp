@@ -1,11 +1,5 @@
 .fav-btn {
     font-size: 18px;
+    cursor: pointer;
 
-    &:hover {
-        transform: scale(1.2);
-    }
-    .section {
-        transition: all 1s;
-        transform-origin: 50% 50%;
-    }
 }
