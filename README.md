@@ -8,8 +8,6 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
-* [Roadmap](#roadmap)
-* [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
@@ -58,12 +56,11 @@ npm install npm@latest -g
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
 ```sh
 git clone https://github.com/fahrisyany/AiChat-webapp.git
 ```
-3. Install NPM packages
+2. Install NPM packages
 ```sh
 npm install
 ```
@@ -93,7 +90,6 @@ Ade Fahri Syany - fahrisyany@gmail.com
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
-* [Choose an Open Source License](https://choosealicense.com)
 * [GitHub Pages](https://pages.github.com)
 * [Animate.css](https://daneden.github.io/animate.css)
 * [Figma](https://www.figma.com/)
