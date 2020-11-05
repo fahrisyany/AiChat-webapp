@@ -19,9 +19,6 @@ function getApi(url: string) {
 
     }).then(response => response.json())
         .catch((err => { throw err }))
-
-    // https://api.themoviedb.org/3/movie/618355?api_key=9e6a20e4327dba49beb61851c2ead343&language=en-US
-
 }
 
 async function setLocalStorage(payload: { item: string, title: string }) {
