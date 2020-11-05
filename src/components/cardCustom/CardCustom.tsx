@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { MovieInterface } from "../../interfaces/movie/movie.interface"
 import Card from 'react-bootstrap/Card';
 import "./CardCustom.scss"
-import illus1 from '../../images/movie-illustrations/movie-illus-1.jpg'
 import { FavoriteButton } from "../favoriteButon/FavoriteButton"
 import { useDispatch } from 'react-redux';
 import { toggleToast, toggleModal } from '../../redux/actions/user-interface';
@@ -47,7 +46,7 @@ const CardCustom: React.FC<CardProps> = (props: CardProps) => {
     }, [handleIconState]);
 
     const addDefaultSrc = (ev: any): void => {
-        ev.target.src = illus1
+        ev.target.src = `https://via.placeholder.com/190x285?text=No+Poster+Available`
     }
 
     return (

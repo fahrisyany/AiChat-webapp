@@ -19,7 +19,9 @@ const ModalCustom: React.FC = () => {
     const handleModal = () => {
         dispatch(toggleModal(!status))
     }
-
+    const addDefaultSrc = (ev: any): void => {
+        ev.target.src = `https://via.placeholder.com/320x480?text=No+Poster+Available`
+    }
     useEffect(() => {
         dispatch(toggleModal(false))
 
@@ -33,7 +35,7 @@ const ModalCustom: React.FC = () => {
                 :
                 <Modal.Body className='d-flex flex-row'>
                     <div className='movie-poster'>
-                        <img src={`http://image.tmdb.org/t/p/w185/${movieDetail?.poster_path}`} alt="movie-poster" />
+                        <img onError={addDefaultSrc} src={`http://image.tmdb.org/t/p/w185/${movieDetail?.poster_path}`} alt="movie-poster" />
                     </div>
                     <div className="movie-info">
                         <h1 className='movie-title'>
