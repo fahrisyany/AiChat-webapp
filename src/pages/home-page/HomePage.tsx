@@ -12,6 +12,9 @@ import CardCustom from '../../components/cardCustom/CardCustom'
 import { MovieState } from "../../interfaces/movie/movie-state.interface"
 import _ from "lodash";
 import { Link } from "react-router-dom";
+import SpinnerCustom from '../../components/spinnerCustom/SpinnerCustom'
+import ModalCustom from '../../components/modalCustom/ModalCustom'
+
 const HomePage: React.FC = () => {
     const dispatch = useDispatch();
     const [query, setQuery] = useState("");
@@ -27,11 +30,10 @@ const HomePage: React.FC = () => {
     const handleFavorite = (movie: MovieInterface): void => {
         let arr = favorites;
         let addArr = true
-        arr.map((item: any):any => {    
+        arr.forEach((item: any) => {
             if (item === movie.id) {
                 _.pull(arr, movie.id)
                 addArr = false
-                return null
             }
         })
         if (addArr) {
@@ -57,6 +59,8 @@ const HomePage: React.FC = () => {
 
     return (
         <div className='home-page'>
+            <ModalCustom />
+
             <div className='hero d-flex'>
                 <div className="d-flex flex-column justify-content-center">
                     <h1 className='hero-txt'> Discover movies, series and more</h1>
@@ -70,17 +74,18 @@ const HomePage: React.FC = () => {
                                 onChange={handleChange}
                                 value={query}
                             />
+                            {loading && <SpinnerCustom />}
+
                         </InputGroup>
                         <Link to="/favorites">
                             <Button className='cta-button'><b>My Favorites</b></Button>
                         </Link>
                     </div>
                 </div>
-                <img className='animate__animated animate__fadeInRight'  src={illus1} alt="movie-poster" />
+                <img className='animate__animated animate__fadeInRight' src={illus1} alt="movie-poster" />
             </div>
 
             <div className='card-ctnr d-flex flex-wrap '>
-                {/* {loading && <p>Loading data</p>} */}
                 {movies.length > 0 && movies.map((movie) =>
                     <CardCustom movie={movie} key={movie.id} handleFavorite={handleFavorite} favorites={favorites} />
                 )}

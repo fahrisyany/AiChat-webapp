@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useDispatch, useSelector } from 'react-redux';
 import { UIInterface } from '../../interfaces/user-interface.interface';
@@ -6,15 +6,12 @@ import { toggleModal } from '../../redux/actions/user-interface';
 import { RootState } from '../../redux/reducers';
 import "./ModalCustom.scss"
 import { MovieState } from '../../interfaces/movie/movie-state.interface';
-import Spinner from 'react-bootstrap/Spinner'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
-interface ModalCustomProps {
+import SpinnerCustom from '../../components/spinnerCustom/SpinnerCustom'
 
-}
-
-const ModalCustom: React.FC<ModalCustomProps> = () => {
+const ModalCustom: React.FC = () => {
     const dispatch = useDispatch();
     const { modal: { status } }: UIInterface = useSelector((state: RootState) => state.UIReducer) || '';
     const { movieDetail, loading, movieCredits }: MovieState = useSelector((state: RootState) => state.movieReducer) || '';
@@ -23,13 +20,16 @@ const ModalCustom: React.FC<ModalCustomProps> = () => {
         dispatch(toggleModal(!status))
     }
 
+    useEffect(() => {
+        dispatch(toggleModal(false))
+
+    }, [dispatch])
+
     return (<>
         <Modal show={status} onHide={handleModal} size="xl" centered >
 
             {loading ?
-                <div className='spinner-cntr'>
-                    <Spinner animation="border" variant="warning" />
-                </div>
+                <SpinnerCustom />
                 :
                 <Modal.Body className='d-flex flex-row'>
                     <div className='movie-poster'>
@@ -51,19 +51,19 @@ const ModalCustom: React.FC<ModalCustomProps> = () => {
                                 <span>Langguage</span>
                                 <div>
                                     {movieDetail?.spoken_languages?.map((lang, i) =>
-                                        <span>
+                                        <span key={i}>
                                             {(i ? ', ' : '') + lang.name}
                                         </span>
                                     )}
                                 </div>
                             </ListGroup.Item>
-                           
+
                             <Tabs defaultActiveKey="crew" >
                                 <Tab eventKey="crew" title="Crew">
                                     <div className='tab-detail'>
                                         {
-                                            movieCredits?.crew?.map((crew) =>
-                                                <ListGroup.Item className='d-flex flex-row justify-content-between'>
+                                            movieCredits?.crew?.map((crew, i) =>
+                                                <ListGroup.Item className='d-flex flex-row justify-content-between' key={i}>
                                                     <span>{crew.job}</span>
                                                     <span>{crew.name}</span>
                                                 </ListGroup.Item>
@@ -74,8 +74,8 @@ const ModalCustom: React.FC<ModalCustomProps> = () => {
                                 <Tab eventKey="cast" title="Cast">
                                     <div className='tab-detail'>
                                         {
-                                            movieCredits?.cast?.map((cast) =>
-                                                <ListGroup.Item className='d-flex flex-row justify-content-between'>
+                                            movieCredits?.cast?.map((cast, i) =>
+                                                <ListGroup.Item className='d-flex flex-row justify-content-between' key={i}>
                                                     <span>{cast.character}</span>
                                                     <span>{cast.name}</span>
                                                 </ListGroup.Item>

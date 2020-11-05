@@ -7,6 +7,7 @@ import { MovieInterface } from '../../interfaces/movie/movie.interface';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFavorite, toggleFavorite } from '../../redux/actions/movie';
 import _ from "lodash";
+import ModalCustom from '../../components/modalCustom/ModalCustom'
 
 
 const FavoritePage: React.FC = () => {
@@ -16,7 +17,7 @@ const FavoritePage: React.FC = () => {
     const handleFavorite = (movie: MovieInterface): void => {
         let arr = favorites;
         let addArr = true
-        arr.map((item: any) => {
+        arr.forEach((item: any) => {
             if (item === movie.id) {
                 _.pull(arr, movie.id)
                 addArr = false
@@ -34,10 +35,8 @@ const FavoritePage: React.FC = () => {
 
     return (
         <div className='favorite-page'>
-            <h1>
-                Your Favorite Movies :
-            </h1>
-
+            <ModalCustom />
+            <h1> Your Favorite Movies : </h1>
             <div className='card-ctnr d-flex flex-wrap '>
                 {favoritesDetails.length > 0 && favoritesDetails.map((movie) =>
                     <CardCustom movie={movie} key={movie.id} handleFavorite={handleFavorite} favorites={favorites} />
