@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, {  SyntheticEvent, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useDispatch, useSelector } from 'react-redux';
 import { UIInterface } from '../../interfaces/user-interface.interface';
@@ -21,12 +21,11 @@ const ModalCustom: React.FC = () => {
     const handleModal = () => {
         dispatch(toggleModal(!status))
     }
-    const addDefaultSrc = (ev: any): void => {
-        ev.target.src = `https://via.placeholder.com/320x480?text=No+Poster+Available`
+    const addDefaultSrc = (ev: SyntheticEvent<HTMLImageElement, Event>): void => {
+        ev.currentTarget.src = `https://via.placeholder.com/320x480?text=No+Poster+Available`
     }
     useEffect(() => {
         dispatch(toggleModal(false))
-
     }, [dispatch])
 
     return (<>

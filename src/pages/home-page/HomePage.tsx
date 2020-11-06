@@ -14,6 +14,7 @@ import _ from "lodash";
 import { Link } from "react-router-dom";
 import SpinnerCustom from '../../components/spinnerCustom/SpinnerCustom'
 import ModalCustom from '../../components/modalCustom/ModalCustom'
+import { useLocation } from "react-router-dom"
 
 const HomePage: React.FC = () => {
     const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const HomePage: React.FC = () => {
     const [page] = useState(1);
     const [debouncedState, setDebouncedState] = useState("");
     const { movies, favorites, loading, error }: MovieState = useSelector((state: RootState) => state.movieReducer) || '';
+    const location = useLocation()
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
         setQuery(e.target.value)
@@ -75,7 +77,7 @@ const HomePage: React.FC = () => {
 
             <div className='card-ctnr d-flex flex-wrap '>
                 {movies.length > 0 && movies.map((movie) =>
-                    <CardCustom movie={movie} key={movie.id} handleFavorite={handleFavorite} favorites={favorites} />
+                    <CardCustom movie={movie} key={movie.id} handleFavorite={handleFavorite} favorites={favorites} pathname={location.pathname} />
                 )}
                 {error && !loading && <p>Error Fetching Data</p>}
             </div>

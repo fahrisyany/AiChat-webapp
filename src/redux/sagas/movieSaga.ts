@@ -43,7 +43,7 @@ function* setFavoriteMovie(action: type.ToggleFavoriteMovie) {
         const storage = yield call(getLocalStorage, `favorite-${movie.id}`)
         let arr = favorites;
         let addArr = true
-        arr.forEach((item: any) => {
+        arr.forEach((item: number) => {
             if (item === movie.id) {
                 _.pull(arr, movie.id)
                 addArr = false

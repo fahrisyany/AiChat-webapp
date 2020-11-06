@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { SyntheticEvent, useCallback, useEffect, useState } from 'react'
 import { MovieInterface } from "../../interfaces/movie/movie.interface"
 import Card from 'react-bootstrap/Card';
 import "./CardCustom.scss"
@@ -6,11 +6,13 @@ import { FavoriteButton } from "../favoriteButon/FavoriteButton"
 import { useDispatch } from 'react-redux';
 import { toggleToast, toggleModal } from '../../redux/actions/user-interface';
 import { getMovieDetail } from '../../redux/actions/movie';
-import {dateFormater} from '../../tools/dateFormater'
+import { dateFormater } from '../../tools/dateFormater'
+
 interface CardProps {
     movie: MovieInterface;
     handleFavorite: (movie: MovieInterface) => void;
     favorites: number[];
+    pathname?:string
 };
 
 const CardCustom: React.FC<CardProps> = (props: CardProps) => {
@@ -18,8 +20,8 @@ const CardCustom: React.FC<CardProps> = (props: CardProps) => {
     const dispatch = useDispatch();
     const toastTextSuccess: string = 'Added to Favorites'
     const toastTextFailed: string = 'Removed from Favorites'
-    const dateFormated:string = dateFormater(props.movie.release_date)
-    
+    const dateFormated: string = dateFormater(props.movie.release_date)
+
     const handleFavoriteButton = (): void => {
         props.handleFavorite(props.movie)
         handleIconState()
@@ -46,8 +48,8 @@ const CardCustom: React.FC<CardProps> = (props: CardProps) => {
         handleIconState()
     }, [handleIconState]);
 
-    const addDefaultSrc = (ev: any): void => {
-        ev.target.src = `https://via.placeholder.com/190x285?text=No+Poster+Available`
+    const addDefaultSrc = (ev: SyntheticEvent<HTMLImageElement, Event>): void => {
+        ev.currentTarget.src = `https://via.placeholder.com/190x285?text=No+Poster+Available`
     }
 
     return (
@@ -59,12 +61,15 @@ const CardCustom: React.FC<CardProps> = (props: CardProps) => {
                 </div>
                 <Card.Text>
                     Release Date:  {dateFormated}
-                    
+
                 </Card.Text>
                 <Card.Title>{props.movie.title}</Card.Title>
-                <Card.Text >
-                    Movie ID: {props.movie.id}
+                <Card.Text>
+                    {props.pathname === '/favorites' && (<p>Langguage :  {props.movie.original_language} </p>)}
+                    {props.pathname === '/' && (<p>imDB ID :  {props.movie.id} </p>)}
                 </Card.Text>
+
+
             </Card.Body>
         </Card>
     )
