@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .toast-cntr {
     position: fixed;
     top: 100px;
@@ -6,7 +8,23 @@
     z-index: 99;
     width: 400px;
 
+    .toast {
+        color: $txt-color;
+        background-color: transparent;
+    }
+    .toast-header {
+        color: $accent-color;
+        small {
+            color: $txt-color;
+        }
+    }
+
     .toast-body {
-        background-color: #fff;
+        background-color: lighten($bg-color, 5%);
+    }
+
+    .toast-header,
+    .toast {
+        background-color: lighten($bg-color, 10%);
     }
 }
