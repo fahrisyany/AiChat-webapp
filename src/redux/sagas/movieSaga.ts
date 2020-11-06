@@ -30,7 +30,6 @@ function* fetchMovieDetail(action: type.GetMovieDetailActionInterface) {
             movieCredits: call(get, `${apiUrl}movie/${action.id}/credits?${apiKey}&language=en-US`),
         })
         yield put({ type: type.GET_MOVIE_DETAIL_SUCCESS, movieDetail: movieDetail, movieCredits: movieCredits })
-
     }
     catch (e) {
         yield put({ type: type.GET_MOVIE_DETAIL_FAILED, message: e.message })
@@ -40,8 +39,6 @@ function* fetchMovieDetail(action: type.GetMovieDetailActionInterface) {
 function* setFavoriteMovie(action: type.ToggleFavoriteMovie) {
     const { movie } = action
     const favorites: number[] = yield select((state: RootState) => state.movieReducer.favorites) || [];
-
-
     try {
         const storage = yield call(getLocalStorage, `favorite-${movie.id}`)
         let arr = favorites;
