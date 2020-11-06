@@ -65,8 +65,8 @@ const CardCustom: React.FC<CardProps> = (props: CardProps) => {
                 </Card.Text>
                 <Card.Title>{props.movie.title}</Card.Title>
                 <Card.Text>
-                    {props.pathname === '/favorites' && (<p>Langguage :  {props.movie.original_language} </p>)}
-                    {props.pathname === '/' && (<p>imDB ID :  {props.movie.id} </p>)}
+                    {props.pathname === '/favorites' && (<span>Langguage :  {props.movie.original_language} </span>)}
+                    {props.pathname === '/' && (<span>imDB ID :  {props.movie.id} </span>)}
                 </Card.Text>
 
 
