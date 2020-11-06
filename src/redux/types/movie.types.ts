@@ -16,7 +16,7 @@ export const GET_FAVORITE_MOVIE_SUCCESS = 'GET_FAVORITE_MOVIE_SUCCESS'
 export interface ToggleFavoriteMovie {
     type: typeof TOGGLE_FAVORITE_MOVIE,
     movie: MovieInterface,
-    array: number[]
+    // array: number[]
 }
 export interface GetFavoriteMovie {
     type: typeof GET_FAVORITE_MOVIE,

@@ -28,18 +28,7 @@ const HomePage: React.FC = () => {
     }
 
     const handleFavorite = (movie: MovieInterface): void => {
-        let arr = favorites;
-        let addArr = true
-        arr.forEach((item: any) => {
-            if (item === movie.id) {
-                _.pull(arr, movie.id)
-                addArr = false
-            }
-        })
-        if (addArr) {
-            arr.push(movie.id)
-        }
-        dispatch(toggleFavorite([...arr], movie))
+        dispatch(toggleFavorite(movie))
     }
 
     const debounce = useCallback(

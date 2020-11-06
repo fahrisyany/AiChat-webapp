@@ -6,7 +6,6 @@ import { MovieState } from '../../interfaces/movie/movie-state.interface';
 import { MovieInterface } from '../../interfaces/movie/movie.interface';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFavorite, toggleFavorite } from '../../redux/actions/movie';
-import _ from "lodash";
 import ModalCustom from '../../components/modalCustom/ModalCustom'
 
 
@@ -15,18 +14,7 @@ const FavoritePage: React.FC = () => {
     const { favorites, favoritesDetails }: MovieState = useSelector((state: RootState) => state.movieReducer) || '';
 
     const handleFavorite = (movie: MovieInterface): void => {
-        let arr = favorites;
-        let addArr = true
-        arr.forEach((item: any) => {
-            if (item === movie.id) {
-                _.pull(arr, movie.id)
-                addArr = false
-            }
-        })
-        if (addArr) {
-            arr.push(movie.id)
-        }
-        dispatch(toggleFavorite([...arr], movie))
+        dispatch(toggleFavorite(movie))
     }
 
     useEffect(() => {

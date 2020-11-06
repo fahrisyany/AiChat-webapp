@@ -16,11 +16,11 @@ export function getMovieDetail(id: number): type.MovieActionTypes {
     }
 }
 
-export function toggleFavorite(arr: number[] , movie: MovieInterface): type.ToggleFavoriteMovie {
+export function toggleFavorite(movie: MovieInterface): type.ToggleFavoriteMovie {
     return {
         type: type.TOGGLE_FAVORITE_MOVIE,
         movie: movie,
-        array: arr
+        // array: arr
 
     }
 }

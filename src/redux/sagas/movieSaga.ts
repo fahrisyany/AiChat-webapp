@@ -3,15 +3,16 @@ import * as type from '../types/movie.types'
 import { environment } from '../../environments/environments'
 import { ResultRequestInterface } from "../../interfaces/resultRequest.interface"
 import { MovieInterface } from "../../interfaces/movie/movie.interface"
-import {get } from "../../services/api-handler/index"
-import {setLocalStorage,getLocalStorage,removeLocalStorage} from "../../tools/localStorage"
+import { get } from "../../services/api-handler/index"
+import { setLocalStorage, getLocalStorage, removeLocalStorage } from "../../tools/localStorage"
+import _ from "lodash";
+import { select } from 'redux-saga/effects';
+import { RootState } from '../reducers'
 
 const apiUrl = environment.endpoints.movieDB.baseUrl
 const apiKey = environment.endpoints.movieDB.apiKey
 const favoriteList = 'favorite-list'
 const favoriteDetail = 'favorite-'
-
-
 
 function* fetchMovies(action: type.GetMovieSearchActionInterface) {
     try {
@@ -37,13 +38,28 @@ function* fetchMovieDetail(action: type.GetMovieDetailActionInterface) {
 }
 
 function* setFavoriteMovie(action: type.ToggleFavoriteMovie) {
+    const { movie } = action
+    const favorites: number[] = yield select((state: RootState) => state.movieReducer.favorites) || [];
+
+
     try {
-        yield call(setLocalStorage, { item: JSON.stringify(action.array), title: favoriteList });
-        const storage = yield call(getLocalStorage, `favorite-${action.movie.id}`)
+        const storage = yield call(getLocalStorage, `favorite-${movie.id}`)
+        let arr = favorites;
+        let addArr = true
+        arr.forEach((item: any) => {
+            if (item === movie.id) {
+                _.pull(arr, movie.id)
+                addArr = false
+            }
+        })
+        if (addArr) {
+            arr.push(movie.id)
+        }
+        yield call(setLocalStorage, { item: JSON.stringify(arr), title: favoriteList });
         if (!storage) {
-            yield call(setLocalStorage, { item: JSON.stringify(action.movie), title: `${favoriteDetail}${action.movie.id}` });
+            yield call(setLocalStorage, { item: JSON.stringify(movie), title: `${favoriteDetail}${movie.id}` });
         } else {
-            yield call(removeLocalStorage, `${favoriteDetail}${action.movie.id}`);
+            yield call(removeLocalStorage, `${favoriteDetail}${movie.id}`);
         }
     } catch (e) {
     }
