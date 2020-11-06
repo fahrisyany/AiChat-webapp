@@ -9,4 +9,15 @@
   max-width: 1400px;
   padding: 120px 24px;
   margin: auto;
+  position: relative;
+
+  .logo {
+    position: absolute;
+   
+    top: 60px;
+    left: 20px;
+    width: 200px;
+    height: auto;
+    cursor: pointer;
+  }
 }

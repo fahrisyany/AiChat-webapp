@@ -17,7 +17,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Screenshot](https://i.imgur.com/70OEiWX.png)
+![Screenshot](https://i.imgur.com/HGUWxop.png)
 
 
 Tout Regarder is a Web App focusing on searching movies at your own leisure and bookmark them so you can revisit later.
