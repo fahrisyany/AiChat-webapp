@@ -6,7 +6,7 @@ import { FavoriteButton } from "../favoriteButon/FavoriteButton"
 import { useDispatch } from 'react-redux';
 import { toggleToast, toggleModal } from '../../redux/actions/user-interface';
 import { getMovieDetail } from '../../redux/actions/movie';
-
+import {dateFormater} from '../../tools/dateFormater'
 interface CardProps {
     movie: MovieInterface;
     handleFavorite: (movie: MovieInterface) => void;
@@ -18,7 +18,7 @@ const CardCustom: React.FC<CardProps> = (props: CardProps) => {
     const dispatch = useDispatch();
     const toastTextSuccess: string = 'Added to Favorites'
     const toastTextFailed: string = 'Removed from Favorites'
-
+    const dateFormated:string = dateFormater(props.movie.release_date)
     const handleFavoriteButton = (): void => {
         props.handleFavorite(props.movie)
         handleIconState()
@@ -57,7 +57,8 @@ const CardCustom: React.FC<CardProps> = (props: CardProps) => {
                     <FavoriteButton isFavorite={isFavorite} />
                 </div>
                 <Card.Text>
-                    Release Date: {props.movie.release_date}
+                    Release Date:  {dateFormated}
+                    
                 </Card.Text>
                 <Card.Title>{props.movie.title}</Card.Title>
                 <Card.Text >

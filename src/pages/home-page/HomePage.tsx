@@ -60,7 +60,6 @@ const HomePage: React.FC = () => {
     return (
         <div className='home-page'>
             <ModalCustom />
-
             <div className='hero d-flex'>
                 <div className="d-flex flex-column justify-content-center">
                     <h1 className='hero-txt'> Discover movies, series and more</h1>

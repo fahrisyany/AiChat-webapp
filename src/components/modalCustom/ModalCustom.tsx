@@ -10,11 +10,13 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import SpinnerCustom from '../../components/spinnerCustom/SpinnerCustom'
+import {dateFormater} from '../../tools/dateFormater'
 
 const ModalCustom: React.FC = () => {
     const dispatch = useDispatch();
     const { modal: { status } }: UIInterface = useSelector((state: RootState) => state.UIReducer) || '';
     const { movieDetail, loading, movieCredits }: MovieState = useSelector((state: RootState) => state.movieReducer) || '';
+    const dateFormated:string = dateFormater(movieDetail?.release_date || '')
 
     const handleModal = () => {
         dispatch(toggleModal(!status))
@@ -47,7 +49,7 @@ const ModalCustom: React.FC = () => {
                         <ListGroup variant="flush">
                             <ListGroup.Item className='d-flex flex-row justify-content-between'>
                                 <span>Released</span>
-                                <span>{movieDetail?.release_date}</span>
+                                <span>{dateFormated}</span>
                             </ListGroup.Item>
                             <ListGroup.Item className='d-flex flex-row justify-content-between'>
                                 <span>Langguage</span>
