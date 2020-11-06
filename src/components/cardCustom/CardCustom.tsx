@@ -19,6 +19,7 @@ const CardCustom: React.FC<CardProps> = (props: CardProps) => {
     const toastTextSuccess: string = 'Added to Favorites'
     const toastTextFailed: string = 'Removed from Favorites'
     const dateFormated:string = dateFormater(props.movie.release_date)
+    
     const handleFavoriteButton = (): void => {
         props.handleFavorite(props.movie)
         handleIconState()
