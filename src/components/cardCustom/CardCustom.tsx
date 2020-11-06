@@ -60,7 +60,7 @@ const CardCustom: React.FC<CardProps> = (props: CardProps) => {
                     <FavoriteButton isFavorite={isFavorite} />
                 </div>
                 <Card.Text>
-                    Release Date:  {dateFormated}
+                    Release Date:  {dateFormated ? dateFormated : 'No date info available'}
 
                 </Card.Text>
                 <Card.Title>{props.movie.title}</Card.Title>

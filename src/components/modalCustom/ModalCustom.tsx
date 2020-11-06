@@ -1,4 +1,4 @@
-import React, {  SyntheticEvent, useEffect } from 'react'
+import React, { SyntheticEvent, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useDispatch, useSelector } from 'react-redux';
 import { UIInterface } from '../../interfaces/user-interface.interface';
@@ -10,13 +10,13 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import SpinnerCustom from '../../components/spinnerCustom/SpinnerCustom'
-import {dateFormater} from '../../tools/dateFormater'
+import { dateFormater } from '../../tools/dateFormater'
 
 const ModalCustom: React.FC = () => {
     const dispatch = useDispatch();
     const { modal: { status } }: UIInterface = useSelector((state: RootState) => state.UIReducer) || '';
     const { movieDetail, loading, movieCredits }: MovieState = useSelector((state: RootState) => state.movieReducer) || '';
-    const dateFormated:string = dateFormater(movieDetail?.release_date || '')
+    const dateFormated: string = dateFormater(movieDetail?.release_date || '')
 
     const handleModal = () => {
         dispatch(toggleModal(!status))
@@ -48,16 +48,15 @@ const ModalCustom: React.FC = () => {
                         <ListGroup variant="flush">
                             <ListGroup.Item className='d-flex flex-row justify-content-between'>
                                 <span>Released</span>
-                                <span>{dateFormated}</span>
+                                <span>{dateFormated ? dateFormated : 'No date info available'}</span>
                             </ListGroup.Item>
                             <ListGroup.Item className='d-flex flex-row justify-content-between'>
                                 <span>Langguage</span>
                                 <div>
                                     {movieDetail?.spoken_languages?.map((lang, i) =>
-                                        <span key={i}>
-                                            {(i ? ', ' : '') + lang.name}
-                                        </span>
+                                        <span key={i}> {(i ? ', ' : '') + lang.name} </span>
                                     )}
+                                    {movieDetail?.spoken_languages?.length === 0 && <span>No langguage info available</span>}
                                 </div>
                             </ListGroup.Item>
 
@@ -88,7 +87,6 @@ const ModalCustom: React.FC = () => {
                                 </Tab>
                             </Tabs>
                         </ListGroup>
-                        {/* {JSON.stringify(movieCredits)} */}
                     </div>
                 </Modal.Body>
             }
